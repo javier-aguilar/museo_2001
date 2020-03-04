@@ -36,4 +36,13 @@ class Curator
     end.map { | artist, _ | artist.name }
   end
 
+  def photographs_taken_by_artist_from(country)
+    @artists.reduce({}) do | photos_by_artist, artist |
+      if artist.country == country
+        photos_by_artist[artist] = find_photos_by_artist(artist.id)
+      end
+      photos_by_artist
+    end.flat_map { | _, photo | photo }
+  end
+
 end
