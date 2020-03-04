@@ -219,6 +219,12 @@ class CuratorTest < Minitest::Test
       39=>"Child with Toy Hand Grenade in Central Park"
     }
     assert_equal expected, @curator.artists_photographs_by_age(diane_arbus)
+
+    ansel_adams = @curator.find_artist_by_id("2")
+    expected = {
+      39=>"Moonrise, Hernandez",
+    }
+    assert_equal expected, @curator.artists_photographs_by_age(ansel_adams)
   end
 
 end
