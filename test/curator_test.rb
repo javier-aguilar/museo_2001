@@ -85,6 +85,7 @@ class CuratorTest < Minitest::Test
     @curator.add_artist(@artist2)
 
     assert_equal @artist1, @curator.find_artist_by_id("1")
+    assert_equal @artist2, @curator.find_artist_by_id("2")
   end
 
   def test_it_can_find_photos_by_artist
@@ -144,10 +145,14 @@ class CuratorTest < Minitest::Test
 
     expected = [@photo2, @photo3, @photo4]
     country = "United States"
-    country2 = "Argentina"
 
     assert_equal expected, @curator.photographs_taken_by_artist_from(country)
+
+    country2 = "Argentina"
     assert_equal [], @curator.photographs_taken_by_artist_from(country2)
+
+    country3 = "France"
+    assert_equal [@photo1], @curator.photographs_taken_by_artist_from(country3)
   end
 
   def test_it_can_load_photographs_by_csv
