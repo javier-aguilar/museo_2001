@@ -29,5 +29,5 @@ class PhotographTest < Minitest::Test
     assert_equal "4", photograph.artist_id
     assert_equal "1954", photograph.year
   end
-
+  
 end
