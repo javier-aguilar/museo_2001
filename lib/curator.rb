@@ -30,4 +30,10 @@ class Curator
     end
   end
 
+  def artists_with_multiple_photographs
+    photographs_by_artist.find_all do | artist, photos |
+      photos.size > 1
+    end.map { | artist, _ | artist.name }
+  end
+
 end

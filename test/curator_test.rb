@@ -119,4 +119,17 @@ class CuratorTest < Minitest::Test
     assert_equal expected, @curator.photographs_by_artist
   end
 
+  def test_it_return_artists_with_multiple_photos
+    @curator.add_artist(@artist1)
+    @curator.add_artist(@artist2)
+    @curator.add_artist(@artist3)
+
+    @curator.add_photograph(@photo1)
+    @curator.add_photograph(@photo2)
+    @curator.add_photograph(@photo3)
+    @curator.add_photograph(@photo4)
+
+    assert_equal ["Diane Arbus"], @curator.artists_with_multiple_photographs
+  end
+
 end
