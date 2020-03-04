@@ -187,11 +187,10 @@ class CuratorTest < Minitest::Test
     assert_equal [], @curator.artists
     @curator.load_artists('./data/artists.csv')
 
-    assert_equal 6, @curator.artists.size
-
     first_artist = @curator.artists.first
     last_artist = @curator.artists.last
 
+    assert_equal 6, @curator.artists.size
     assert_equal "1", first_artist.id
     assert_equal "Henri Cartier-Bresson", first_artist.name
     assert_equal "1908", first_artist.born
