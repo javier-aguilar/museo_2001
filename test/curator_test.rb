@@ -55,6 +55,12 @@ class CuratorTest < Minitest::Test
       artist_id: "3",
       year: "1927"
     })
+    @photo5 = Photograph.new({
+      id: "5",
+      name: "Oak Tree, Snow Storm",
+      artist_id: "2",
+      year: "1948"
+    })
   end
 
   def test_it_exists
@@ -131,6 +137,9 @@ class CuratorTest < Minitest::Test
     @curator.add_photograph(@photo4)
 
     assert_equal ["Diane Arbus"], @curator.artists_with_multiple_photographs
+    @curator.add_photograph(@photo5)
+
+    assert_equal ["Ansel Adams", "Diane Arbus"], @curator.artists_with_multiple_photographs
   end
 
   def test_it_can_return_photographs_taken_by_artist_from_country
