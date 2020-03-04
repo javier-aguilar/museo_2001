@@ -191,4 +191,17 @@ class CuratorTest < Minitest::Test
     assert_equal "United States", last_artist.country
   end
 
+  def test_it_can_return_photographs_taken_between_given_years
+    @curator.load_photographs('./data/photographs.csv')
+    photographs = @curator.photographs_taken_between(1950..1965)
+
+    assert_equal 2, photographs.size
+
+    assert photographs.first.year.to_i >= 1950
+    assert photographs.first.year.to_i <= 1965
+
+    assert photographs.last.year.to_i >= 1950
+    assert photographs.last.year.to_i <= 1965
+  end
+
 end
