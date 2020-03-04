@@ -13,6 +13,7 @@ class CuratorTest < Minitest::Test
 
 
   def test_it_has_attributes
-    skip
+    curator = Curator.new
+    assert_equal [], curator.photographs
   end
 end
