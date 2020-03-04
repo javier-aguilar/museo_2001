@@ -169,4 +169,26 @@ class CuratorTest < Minitest::Test
     assert_equal "1962", last_photo.year
   end
 
+  def test_it_can_load_artists_by_csv
+    assert_equal [], @curator.artists
+    @curator.load_artists('./data/artists.csv')
+
+    assert_equal 6, @curator.artists.size
+
+    first_artist = @curator.artists.first
+    last_artist = @curator.artists.last
+
+    assert_equal "1", first_artist.id
+    assert_equal "Henri Cartier-Bresson", first_artist.name
+    assert_equal "1908", first_artist.born
+    assert_equal "2004", first_artist.died
+    assert_equal "France", first_artist.country
+
+    assert_equal "6", last_artist.id
+    assert_equal "Bill Cunningham", last_artist.name
+    assert_equal "1929", last_artist.born
+    assert_equal "2016", last_artist.died
+    assert_equal "United States", last_artist.country
+  end
+
 end
