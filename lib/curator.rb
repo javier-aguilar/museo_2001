@@ -33,18 +33,20 @@ class Curator
   end
 
   def artists_with_multiple_photographs
-    photographs_by_artist.find_all do | artist, photos |
+    artists = photographs_by_artist.find_all do | artist, photos |
       photos.size > 1
-    end.map { | artist, _ | artist.name }
+    end
+    artists.map { | artist, _ | artist.name }
   end
 
   def photographs_taken_by_artist_from(country)
-    @artists.reduce({}) do | photos_by_artist, artist |
+    photos_by_artist = @artists.reduce({}) do | photos_by_artist, artist |
       if artist.country == country
         photos_by_artist[artist] = find_photos_by_artist(artist.id)
       end
       photos_by_artist
-    end.flat_map { | _, photo | photo }
+    end
+    photos_by_artist.flat_map { | _, photo | photo }
   end
 
   def load_photographs(file_path)
