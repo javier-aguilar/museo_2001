@@ -80,4 +80,12 @@ class Curator
     end
   end
 
+  def artists_photographs_by_age(artist)
+    photographs_by_artist[artist].reduce({}) do | artist_age, photo |
+      artist_age[photo.year.to_i - artist.born.to_i] = photo.name
+      artist_age
+    end
+  end
+
+
 end
