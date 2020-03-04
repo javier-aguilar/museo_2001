@@ -150,4 +150,23 @@ class CuratorTest < Minitest::Test
     assert_equal [], @curator.photographs_taken_by_artist_from(country2)
   end
 
+  def test_it_can_load_photographs_by_csv
+    assert_equal [], @curator.photographs
+    @curator.load_photographs('./data/photographs.csv')
+
+    first_photo = @curator.photographs.first
+    last_photo = @curator.photographs.last
+
+    assert_equal 4, @curator.photographs.size
+    assert_equal "1", first_photo.artist_id
+    assert_equal "1", first_photo.id
+    assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", first_photo.name
+    assert_equal "1954", first_photo.year
+
+    assert_equal "3", last_photo.artist_id
+    assert_equal "4", last_photo.id
+    assert_equal "Child with Toy Hand Grenade in Central Park", last_photo.name
+    assert_equal "1962", last_photo.year
+  end
+
 end

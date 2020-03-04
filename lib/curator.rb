@@ -1,3 +1,5 @@
+require 'csv'
+
 class Curator
 
   attr_reader :photographs, :artists
@@ -43,6 +45,19 @@ class Curator
       end
       photos_by_artist
     end.flat_map { | _, photo | photo }
+  end
+
+  def load_photographs(file_path)
+    csv = CSV.read(file_path, headers: true, header_converters: :symbol)
+    csv.map do |row|
+       attributes = {
+         id: row[:id],
+         name: row[:name],
+         artist_id: row[:artist_id],
+         year: row[:year]
+       }
+      @photographs << Photograph.new(attributes)
+    end
   end
 
 end
